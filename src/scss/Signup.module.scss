@@ -1,0 +1,14 @@
+.signup{
+    padding: 10px 16px;
+    >form{
+        max-width: 800px;
+        >div{
+            display: flex;
+            flex-direction: column;
+            >*{
+                display: flex;
+                width: inherit;
+            }
+        }
+    }
+}

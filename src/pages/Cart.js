@@ -46,7 +46,7 @@ const Cart = () => {
     try {
       console.log(productId, quantity);
       const response = await fetch(
-        `http://localhost:8000/cart/update-cart/${productId}`,
+        `https://eagle-backend-ekxb.onrender.com/cart/update-cart/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -63,7 +63,7 @@ const Cart = () => {
       console.error("Error adding to cart:", error);
       alert("Something went wrong", error.message);
     } finally {
-      setQuantityUpdate(false); // Reset pending state
+      setQuantityUpdate(false); 
     }
   };
   const placeOrder = async () => {
@@ -77,7 +77,6 @@ const Cart = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          // Your request body
           body: JSON.stringify({}),
         }
       );

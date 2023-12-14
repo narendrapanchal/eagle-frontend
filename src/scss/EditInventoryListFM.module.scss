@@ -1,0 +1,22 @@
+.edit_inventory {
+    padding: 10px 16px;
+    form{
+      display: flex;
+      flex-direction: column;
+      max-width: 800px;
+      *{
+        width: inherit;
+      }
+      label{
+        margin-top: 10px;
+      }
+      input{
+        display: flex;
+        margin-top: 4px;
+      }
+      button{
+        margin-top: 20px;
+      }
+    }
+  }
+  

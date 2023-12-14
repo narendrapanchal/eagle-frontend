@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getAuthTokenFromCookie, getRoleFromCookie } from "../helpers/getToken";
-import styles from "../scss/Order.module.scss";
-const Order = () => {
+import styles from "../scss/OrderFM.module.scss";
+import UpdateOrder from "../components/UpdateOrder";
+const OrderFM = () => {
   const [orderList, setOrderList] = useState([]);
   const token = getAuthTokenFromCookie();
   if (!token) {
@@ -13,7 +14,7 @@ const Order = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://eagle-backend-ekxb.onrender.com/order/orders/`,
+        `https://eagle-backend-ekxb.onrender.com/order/all-orders`,
         {
           method: "POST",
           headers: {
@@ -25,7 +26,7 @@ const Order = () => {
         }
       );
       let res = await response.json();
-      console.log("res", res.orders);
+      console.log("res.orders",res.orders);
       setOrderList(res.orders);
     } catch (error) {
       console.error("Error fetching inventory:", error);
@@ -50,7 +51,6 @@ const Order = () => {
             <div className={styles.product_list}>
               {" "}
               {item.items.map((ele) => {
-                console.log("ele", ele);
                 return ele.quantity > 0 ? (
                   <div key={ele._id}>
                     <div className={styles.image}>
@@ -84,6 +84,7 @@ const Order = () => {
                         );
                       })}
                     </div>
+                    <UpdateOrder statusString={item.status[item.status.length-1]}orderId={item._id}/>
                   </div>
                 ) : (
                   ""
@@ -97,4 +98,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrderFM;

@@ -6,6 +6,9 @@ import styles from "../scss/Inventory.module.scss";
 const Inventory = () => {
   const [inventory, setInventory] = useState([]);
   const token = getAuthTokenFromCookie();
+  if (!token) {
+    window.location = "/login";
+  }
   const role = getRoleFromCookie();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
